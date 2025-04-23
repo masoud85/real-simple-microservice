@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: real-simple-mocroservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/springjdbc
+    username: masoud
+    password: masoud
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      show-sql: true
+      ddl-auto: update
+
