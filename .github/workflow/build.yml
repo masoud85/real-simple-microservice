@@ -1,0 +1,37 @@
+name: Build and publish the artifact
+
+on:
+  push:
+    branches:
+      - '**'  # Trigger on all branches (wildcard pattern for any branch)
+  pull_request:
+    branches:
+      - '**'  # Trigger on PRs to any branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+
+      - name: Set up Maven
+        uses: actions/setup-maven@v3
+        with:
+          maven-version: '3.8.1'
+
+      - name: Run unit tests
+        run: mvn clean test
+
+      - name: Run integration tests
+        run: mvn verify -DskipUnitTests
+
+    # Condition to skip master branch
+    if: github.ref != 'refs/heads/master'
+    # This will only run if the branch is not master
