@@ -6,13 +6,12 @@ on:
       - '**'  # Trigger on PRs to any branch
 
 jobs:
-  unit-tests:
-    name: 🔍 Unit Tests
+  test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
+    steps:
+      - name: check out the branch
+        uses: actions/checkout@v4
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -21,34 +20,13 @@ jobs:
           cache: maven
 
       - name: Show branch
-        run: echo "🛠️  Testing PR on branch ${{ github.ref_name }}"
+        run: echo "🛠️  Testing pull request on branch:: ${{ github.ref_name }}"
 
       - name: Run unit tests
-        run: |
-          echo "::group::Running Unit Tests"
-          mvn clean test
-          echo "::endgroup::"
-
-  integration-tests:
-    name: 🔗 Integration Tests
-    needs: unit-tests       # waits for unit-tests to finish
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+        run: mvn clean test
 
       - name: Run integration tests
-        run: |
-          echo "::group::Running Integration Tests"
-          mvn verify -DskipUnitTests
-          echo "::endgroup::"
+        run: mvn verify -DskipUnitTests
 
     # Condition to skip master branch
     if: github.ref != 'refs/heads/master'
