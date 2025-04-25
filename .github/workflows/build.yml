@@ -1,4 +1,4 @@
-name: Build and publish the artifact
+name: CI Pipeline
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
 
       - name: Set up Maven
-        uses: actions/setup-maven@v3
+        uses: actions/setup-maven@v2  # Corrected to v2
         with:
           maven-version: '3.8.1'
 
