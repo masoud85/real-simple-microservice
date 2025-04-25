@@ -20,7 +20,7 @@ jobs:
           cache: maven
 
       - name: Show branch
-        run: echo "🛠️  Testing pull request on branch:: ${{ github.ref_name }}"
+        run: echo "🛠️  Testing pull request on branch: ${{ github.ref_name }}"
 
       - name: Run unit tests
         run: mvn clean test
