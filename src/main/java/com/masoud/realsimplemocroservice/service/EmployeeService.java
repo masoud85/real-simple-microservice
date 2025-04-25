@@ -24,6 +24,9 @@ public class EmployeeService {
     public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
+    public Employee findById(long id) {
+        return employeeRepository.findById(id).orElse(null);
+    }
 
     public Long save(Employee employee) {
         validateEmployee(employee);
