@@ -9,5 +9,4 @@ public class RealSimpleMocroserviceApplication {
     public static void main(String[] args) {
         SpringApplication.run(RealSimpleMocroserviceApplication.class, args);
     }
-
 }

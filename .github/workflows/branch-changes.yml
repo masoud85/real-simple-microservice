@@ -1,7 +1,7 @@
 name: CI Pipeline
 
 on:
-  pull_request:
+  push:
     branches:
       - '**'  # Trigger on PRs to any branch
 
@@ -20,10 +20,10 @@ jobs:
           cache: maven
 
       - name: Show branch
-        run: echo "🛠️  Testing pull request on branch ${{ github.ref_name }}"
+        run: echo "🛠️  Testing changes on branch ${{ github.ref_name }}"
 
-      - name: Run integration tests
-        run: mvn verify -DskipUTs
+      - name: Run unit tests
+        run: mvn clean test
 
     # Condition to skip master branch
     if: github.ref != 'refs/heads/master'
