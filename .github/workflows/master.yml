@@ -4,21 +4,27 @@ on:
   push:
     branches:
       - master
-
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  unit-test:
+    uses: unit-test.yml
+  integration-test:
+    uses: integration-test.yml
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Run all tests
-        run: mvn verify
+#jobs:
+#  test:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#
+#      - name: Set up JDK
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '17'
+#          distribution: 'temurin'
+#          cache: maven
+#
+#      - name: Run all tests
+#        run: mvn verify
