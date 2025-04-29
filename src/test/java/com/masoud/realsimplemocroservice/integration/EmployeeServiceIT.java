@@ -19,7 +19,7 @@ public class EmployeeServiceIT {
     void saveEmployeeCorrectly() {
         Employee employee = new Employee(null, "A", "B", "a.b@gmail.com", "address", "+3412345678", Gender.MALE);
         Long id = employeeService.save(employee);
-        assertNotEquals(id, null);
+        assertNotEquals(null, id);
     }
 
 }
