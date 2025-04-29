@@ -56,4 +56,12 @@ public class EmployeeService {
         }
     }
 
+    public void deleteEmployeeById(Long id) {
+        if (Objects.isNull(id)) {
+            String message = "Employee name must not be empty";
+            logger.info(message);
+            throw new IllegalArgumentException(message);
+        }
+        employeeRepository.deleteById(id);
+    }
 }
