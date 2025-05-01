@@ -1,4 +1,4 @@
-name: CI Pipeline on master >  uni test - IT
+name: CI Pipeline on master > uni test - IT
 
 on:
   push:
