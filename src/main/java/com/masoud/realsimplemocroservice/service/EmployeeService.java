@@ -28,10 +28,19 @@ public class EmployeeService {
         return employeeRepository.findById(id).orElse(null);
     }
 
-    public Long save(Employee employee) {
+    public Long saveEmployee(Employee employee) {
         validateEmployee(employee);
         Employee savedEmployee = employeeRepository.save(employee);
         return savedEmployee.getId();
+    }
+
+    public void updateEmployee(Employee employee) {
+        validateEmployee(employee);
+        Employee existingEmployee = employeeRepository.findById(employee.getId()).orElse(null);
+        if (existingEmployee == null) {
+            throw new InvalidEmployeeException("Employee not found");
+        }
+        employeeRepository.save(employee);
     }
 
     private void validateEmployee(Employee employee) {

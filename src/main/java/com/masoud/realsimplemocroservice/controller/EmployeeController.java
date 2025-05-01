@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 import java.util.Vector;
@@ -34,12 +35,17 @@ public class EmployeeController {
 
     @PostMapping("/addEmployee")
     public Long addEmployee(@RequestBody Employee employee) {
-        return employeeService.save(employee);
+        return employeeService.saveEmployee(employee);
     }
 
     @DeleteMapping("/deleteEmployeeById/{id}")
     public void deleteEmployeeById(@PathVariable(value = "id") Long id) {
         employeeService.deleteEmployeeById(id);
+    }
+
+    @PutMapping("/updateEmployee")
+    public void deleteEmployeeById(@RequestBody Employee employee) {
+        employeeService.updateEmployee(employee);
     }
 
 }

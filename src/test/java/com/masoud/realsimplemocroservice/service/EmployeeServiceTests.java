@@ -32,7 +32,7 @@ class EmployeeServiceTests {
 //        EmployeeService employeeService = new EmployeeService(mockRepo);
 
         Employee employee = new Employee(null, null, "B", "a.b@gmail.com", "address", "+3412345678", Gender.MALE);
-        InvalidEmployeeException invalidEmployeeException = assertThrows(InvalidEmployeeException.class, () -> employeeService.save(employee));
+        InvalidEmployeeException invalidEmployeeException = assertThrows(InvalidEmployeeException.class, () -> employeeService.saveEmployee(employee));
         assertNotNull(invalidEmployeeException.getMessage());
         assertTrue(invalidEmployeeException.getMessage().contains("Employee name must not be empty"));
     }
