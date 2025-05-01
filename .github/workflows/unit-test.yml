@@ -2,16 +2,13 @@ name: Branch > unit test
 
 on:
   push:
+    branches-ignore:
+      - master
     branches:
       - '**'  # Trigger on PRs to any branch
 
 jobs:
   unit-test:
-
-    # Condition to skip master branch
-    if: github.ref != 'refs/heads/master'
-    # This will only run if the branch is not master
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,3 +27,6 @@ jobs:
       - name: Run unit tests
         run: mvn clean test
 
+    # Condition to skip master branch
+    if: github.ref != 'refs/heads/master'
+    # This will only run if the branch is not master
