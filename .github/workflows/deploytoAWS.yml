@@ -1,0 +1,28 @@
+name: Deploy to AWS after tests pass
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline on master > uni test - IT"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Deploy to AWS
+        run: |
+          echo "Deploying to AWS..."
+          # add your deployment commands here
