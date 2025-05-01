@@ -14,4 +14,6 @@ WORKDIR app
 
 COPY --from=build app/target/rsmApp.jar /app
 
+EXPOSE 8080
+
 CMD ["java", "-jar", "/app/rsmApp.jar"]
