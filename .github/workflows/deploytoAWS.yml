@@ -54,11 +54,14 @@ jobs:
         run: |
           zip -r deploy.zip Dockerrun.aws.json
           aws s3 cp deploy.zip s3://elasticbeanstalk-eu-north-1-183619025518/simple-springboot-app/$GITHUB_SHA.zip
+
+          VERSION_LABEL="${GITHUB_SHA}-$(date +%s)"
+
           aws elasticbeanstalk create-application-version \
             --application-name simple-springboot-app \
-            --version-label "$GITHUB_SHA-$(date +%s)" \
+            --version-label "$VERSION_LABEL" \
             --source-bundle S3Bucket=elasticbeanstalk-eu-north-1-183619025518,S3Key=simple-springboot-app/$GITHUB_SHA.zip
-          
+
           aws elasticbeanstalk update-environment \
             --environment-name simple-springboot-app-env \
-            --version-label $GITHUB_SHA
+            --version-label "$VERSION_LABEL"
