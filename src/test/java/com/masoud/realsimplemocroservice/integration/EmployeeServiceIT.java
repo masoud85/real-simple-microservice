@@ -46,4 +46,11 @@ public class EmployeeServiceIT {
         assertNotEquals(name , employeeService.findById(savedEmployeeId).getName());
     }
 
+    @Test
+    public void findByIdCorrectly() {
+        Long id = employeeService.saveEmployee(employee);
+        Employee employee = employeeService.findById(id);
+        assertNotNull(employee);
+    }
+
 }
