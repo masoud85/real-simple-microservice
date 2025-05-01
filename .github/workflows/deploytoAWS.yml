@@ -53,12 +53,12 @@ jobs:
       - name: Push to Elastic Beanstalk
         run: |
           zip -r deploy.zip Dockerrun.aws.json
-          aws s3 cp deploy.zip s3://elasticbeanstalk-eu-north-1-183619025518/fist-microservice/$GITHUB_SHA.zip
+          aws s3 cp deploy.zip s3://elasticbeanstalk-eu-north-1-183619025518/simple-springboot-app/$GITHUB_SHA.zip
           aws elasticbeanstalk create-application-version \
-            --application-name fist-microservice \
+            --application-name simple-springboot-app \
             --version-label $GITHUB_SHA \
-            --source-bundle S3Bucket=elasticbeanstalk-eu-north-1-183619025518,S3Key=fist-microservice/$GITHUB_SHA.zip
+            --source-bundle S3Bucket=elasticbeanstalk-eu-north-1-183619025518,S3Key=simple-springboot-app/$GITHUB_SHA.zip
           
           aws elasticbeanstalk update-environment \
-            --environment-name First-microservice-env \
+            --environment-name simple-springboot-app-env \
             --version-label $GITHUB_SHA
