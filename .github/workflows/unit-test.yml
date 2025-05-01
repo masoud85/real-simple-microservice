@@ -4,8 +4,6 @@ on:
   push:
     branches-ignore:
       - master
-    branches:
-      - '**'  # Trigger on PRs to any branch
 
 jobs:
   unit-test:
