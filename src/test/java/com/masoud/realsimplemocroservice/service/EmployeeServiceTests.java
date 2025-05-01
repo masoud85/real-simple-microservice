@@ -12,7 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 class EmployeeServiceTests {
@@ -33,7 +32,7 @@ class EmployeeServiceTests {
 //        EmployeeService employeeService = new EmployeeService(mockRepo);
 
         Employee employee = new Employee(null, null, "B", "a.b@gmail.com", "address", "+3412345678", Gender.MALE);
-        InvalidEmployeeException invalidEmployeeException = assertThrows(InvalidEmployeeException.class, () -> employeeService.save(employee));
+        InvalidEmployeeException invalidEmployeeException = assertThrows(InvalidEmployeeException.class, () -> employeeService.saveEmployee(employee));
         assertNotNull(invalidEmployeeException.getMessage());
         assertTrue(invalidEmployeeException.getMessage().contains("Employee name must not be empty"));
     }
