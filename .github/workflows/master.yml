@@ -6,9 +6,9 @@ on:
       - master
 jobs:
   unit-test:
-    uses: unit-test.yml
+    uses: ./.github/workflows/unit-test.yml
   integration-test:
-    uses: integration-test.yml
+    uses: ./.github/workflows/integration-test.yml
 
 
 #jobs:
