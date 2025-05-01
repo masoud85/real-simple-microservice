@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  Running all tests:
+  Running-all-tests:
     runs-on: ubuntu-latest
 
     steps:
