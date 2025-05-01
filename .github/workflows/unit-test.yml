@@ -1,4 +1,4 @@
-name: branch unit test
+name: Branch > unit test
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: PR integration test
+name: PR > integration test
 
 on:
   pull_request:
