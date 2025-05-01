@@ -30,6 +30,7 @@ jobs:
         run: mvn clean install
 
   deploy-to-aws:
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -51,7 +52,7 @@ jobs:
 
       - name: Push to Elastic Beanstalk
         run: |
-          zip -r deploy.zip Dockerrun.aws.json .ebextensions
+          zip -r deploy.zip Dockerrun.aws.json
           aws elasticbeanstalk create-application-version \
             --application-name my-app \
             --version-label $GITHUB_SHA \
