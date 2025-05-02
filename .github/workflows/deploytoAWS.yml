@@ -67,7 +67,7 @@ jobs:
           {
             "AWSEBDockerrunVersion": "1",
             "Image": {
-              "Name": "$IMAGE_URI",
+              "Name": "${{ env.IMAGE_URI }}",
               "Update": "true"
             },
             "Ports": [
@@ -84,16 +84,16 @@ jobs:
 
           ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)
           VERSION_LABEL="${GITHUB_SHA}-$(date +%s)"
-          S3_KEY=$ECR_REPOSITORY/$GITHUB_SHA.zip
+          S3_KEY=simple-springboot-app/$GITHUB_SHA.zip
           S3_BUCKET=elasticbeanstalk-${AWS_REGION}-${ACCOUNT_ID}
 
           aws s3 cp deploy.zip s3://$S3_BUCKET/$S3_KEY
 
           aws elasticbeanstalk create-application-version \
-            --application-name $ECR_REPOSITORY \
+            --application-name simple-springboot-app \
             --version-label "$VERSION_LABEL" \
             --source-bundle S3Bucket=$S3_BUCKET,S3Key=$S3_KEY
 
           aws elasticbeanstalk update-environment \
-            --environment-name ${ECR_REPOSITORY}-env \
+            --environment-name simple-springboot-app-env \
             --version-label "$VERSION_LABEL"
