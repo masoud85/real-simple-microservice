@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "your-dockerhub-username/simple-springboot-app:latest",
+    "Name": "123456789012.dkr.ecr.eu-north-1.amazonaws.com/simple-springboot-app:$GITHUB_SHA",
     "Update": "true"
   },
   "Ports": [
